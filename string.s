@@ -8,7 +8,7 @@ round_size:
 
     sub $8, %rsp
 
-    mov %rdi, -8(%rbp)
+    mov %rdi, -8(%rbp) # size
 
     subq $1, -8(%rbp)
     movq -8(%rbp), %rax
@@ -40,8 +40,8 @@ string_realloc:
 
     sub $16, %rsp
 
-    mov %rdi, -16(%rbp)
-    mov %rsi, -8(%rbp)
+    mov %rdi, -16(%rbp) # string pointer
+    mov %rsi, -8(%rbp)  # new size
 
     mov -16(%rbp), %rdi
     mov 0(%rdi), %rsi
@@ -91,7 +91,7 @@ string_destroy:
 
     sub $8, %rsp
 
-    mov %rdi, -8(%rbp)
+    mov %rdi, -8(%rbp) # string pointer
 
     mov -8(%rbp), %rsi
 
@@ -117,7 +117,7 @@ string_create:
 
     sub $8, %rsp
 
-    mov %rsi, -8(%rbp)
+    mov %rsi, -8(%rbp) # char array
 
     push %r12
     push %r13
@@ -165,8 +165,8 @@ string_push:
 
     sub $16, %rsp
 
-    mov %rdi, -16(%rbp)
-    mov %rsi, -8(%rbp)
+    mov %rdi, -16(%rbp) # string pointer
+    mov %rsi, -8(%rbp)  # char
 
     mov -16(%rbp), %rax
     mov 8(%rax), %rdi
@@ -204,7 +204,7 @@ string_pop:
 
     sub $8, %rsp
 
-    mov %rdi, -8(%rbp)
+    mov %rdi, -8(%rbp) # string pointer
 
     mov -8(%rbp), %rax
     cmpq $0, 8(%rax)
@@ -230,8 +230,8 @@ string_append_chars:
 
     sub $16, %rsp
 
-    mov %rdi, -16(%rbp)
-    mov %rsi, -8(%rbp)
+    mov %rdi, -16(%rbp) # string pointer
+    mov %rsi, -8(%rbp)  # char array
 
     mov -8(%rbp), %rdi
     call strlen
