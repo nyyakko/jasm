@@ -93,16 +93,16 @@ string_destroy:
 
     mov %rdi, -8(%rbp)
 
-    push %r12
-    mov -8(%rbp), %r12
+    mov -8(%rbp), %rsi
 
-    mov (%r12), %rdi
+    push %rsi
+    mov (%rsi), %rdi
     call free
+    pop %rsi
 
-    movq $0, 0(%r12)
-    movq $0, 8(%r12)
-    movq $0, 16(%r12)
-    pop %r12
+    movq $0, 0(%rsi)
+    movq $0, 8(%rsi)
+    movq $0, 16(%rsi)
 
     add $8, %rsp
 

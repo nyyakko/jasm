@@ -61,11 +61,8 @@ main:
     mov %rbx, %rdi
     call fclose
 
-    lea .L.str.3(%rip), %rdi
-    lea -288(%rbp), %rax
-    mov 0(%rax), %rsi
-    mov $0, %rax
-    call printf
+    lea -288(%rbp), %rdi
+    call lexicalize
 
     lea -288(%rbp), %rdi
     call string_destroy
